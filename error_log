@@ -1,0 +1,4 @@
+[24-Jan-2019 15:14:07 Africa/Abidjan] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/sheiooec/public_html/system/libraries/Session/Session.php on line 143
+[24-Jan-2019 15:14:23 Africa/Abidjan] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/sheiooec/public_html/system/libraries/Session/Session.php on line 143
+[24-Jan-2019 15:16:17 Africa/Abidjan] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/sheiooec/public_html/system/libraries/Session/Session.php on line 143
+[24-Jan-2019 15:17:16 Africa/Abidjan] PHP Fatal error:  Call to a member function num_rows() on boolean in /home/sheiooec/public_html/app/models/Site.php on line 42

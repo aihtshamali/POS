@@ -1,0 +1,24 @@
+﻿Step 1:
+- Upload and unzip sp.zip to folder public_html(your hosting)
+- Create database and import: sp.sql
+
+Step 2:
+- Edit file: ../app/config/config.php 
+
+find and change: $config['base_url'] = 'http://yourdomain.com/';   
+
+http://yourdomain.com/  ---> your domain use
+
+- Edit file: ../app/config/database.php
+
+find and change your database use:
+
+	'username' => 'root',
+	'password' => '123456',
+	'database' => 'sp',
+	
+Step 3:
+You can login: http://yourdomain.com/admin/login
+
+Username: owner@tecdiary.com
+Password: 12345678
