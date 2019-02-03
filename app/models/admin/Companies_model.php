@@ -213,6 +213,14 @@ class Companies_model extends CI_Model
         }
         return false;
     }
+    public function removeDeposit($data, $cdata)
+    {
+        if ($this->db->insert('refunds', $data) &&
+            $this->db->update('companies', $cdata, array('id' => $data['company_id']))) {
+            return true;
+        }
+        return false;
+    }
 
     public function updateDeposit($id, $data, $cdata)
     {

@@ -8,6 +8,7 @@
             'bProcessing': true, 'bServerSide': true,
             'sAjaxSource': '<?= admin_url('customers/getCustomers') ?>',
             'fnServerData': function (sSource, aoData, fnCallback) {
+                console.log(aoData);
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
                     "value": "<?= $this->security->get_csrf_hash() ?>"
@@ -17,6 +18,7 @@
             'fnRowCallback': function (nRow, aData, iDisplayIndex) {
                 nRow.id = aData[0];
                 nRow.className = "customer_details_link";
+                console.log(nRow);
                 return nRow;
             },
             "aoColumns": [{
@@ -31,8 +33,9 @@
             {column_number: 5, filter_default_label: "[<?=lang('price_group');?>]", filter_type: "text", data: []},
             {column_number: 6, filter_default_label: "[<?=lang('customer_group');?>]", filter_type: "text", data: []},
             {column_number: 7, filter_default_label: "[<?=lang('vat_no');?>]", filter_type: "text", data: []},
-            {column_number: 8, filter_default_label: "[<?=lang('deposit');?>]", filter_type: "text", data: []},
-            {column_number: 9, filter_default_label: "[<?=lang('award_points');?>]", filter_type: "text", data: []},
+            {column_number: 8, filter_default_label: "[<?=lang('Current');?>]", filter_type: "text", data: []},
+            {column_number: 9, filter_default_label: "[<?=lang('Refund');?>]", filter_type: "text", data: []},
+            {column_number: 10, filter_default_label: "[<?=lang('award_points');?>]", filter_type: "text", data: []},
         ], "footer");
         $('#myModal').on('hidden.bs.modal', function () {
             cTable.fnDraw( false );
@@ -103,14 +106,16 @@
                             <th><?= lang("price_group"); ?></th>
                             <th><?= lang("customer_group"); ?></th>
                             <th><?= lang("vat_no"); ?></th>
-                            <th><?= lang("deposit"); ?></th>
-                            <th><?= lang("award_points"); ?></th>
-                            <th style="min-width:135px !important;"><?= lang("actions"); ?></th>
+                            <th><?= lang("Current"); ?></th>
+                            <th><?= lang("Refund"); ?></th>
+                            
+                            <th style="min-width:135px !important;"><?= lang("Actions"); ?></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="11" class="dataTables_empty"><?= lang('loading_data_from_server') ?></td>
+                            <td colspan="12" class="dataTables_empty"><?= lang('loading_data_from_server') ?></td>
+
                         </tr>
                         </tbody>
                         <tfoot class="dtFilter">
