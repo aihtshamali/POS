@@ -22,11 +22,14 @@ class Customers extends MY_Controller
 
     function index($action = NULL)
     {
+        // print_r("hey");
+        // exit();
         $this->sma->checkPermissions();
 
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['action'] = $action;
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('customers')));
+
         $meta = array('page_title' => lang('customers'), 'bc' => $bc);
         $this->page_construct('customers/index', $meta, $this->data);
     }
@@ -35,13 +38,54 @@ class Customers extends MY_Controller
     {
         $this->sma->checkPermissions('index');
         $this->load->library('datatables');
+        // comments
+            // ->select("sma_companies.id,sma_companies.company, sma_companies.name, sma_companies.email, sma_companies.phone, sma_companies.price_group_name, sma_companies.customer_group_name, sma_companies.vat_no, sma_companies.deposit_amount as Current,SUM(sma_refunds.amount) as Refund, sma_companies.award_points")
         $this->datatables
-            ->select("id, company, name, email, phone, price_group_name, customer_group_name, vat_no, deposit_amount, award_points")
-            ->from("companies")
+            ->select("sma_companies.id,sma_companies.company, sma_companies.name, sma_companies.email, sma_companies.phone, sma_companies.price_group_name, sma_companies.customer_group_name, sma_companies.vat_no, sma_companies.deposit_amount as Current,SUM(sma_refunds.amount) as Refund")
+            ->from("sma_companies")
+            ->join('sma_refunds','sma_refunds.company_id = sma_companies.id')
             ->where('group_name', 'customer')
-            ->add_column("Actions", "<div class=\"text-center\"><a class=\"tip\" title='" . lang("list_deposits") . "' href='" . admin_url('customers/deposits/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-money\"></i></a> <a class=\"tip\" title='" . lang("add_deposit") . "' href='" . admin_url('customers/add_deposit/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-plus\"></i></a> <a class=\"tip\" title='" . lang("list_addresses") . "' href='" . admin_url('customers/addresses/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-location-arrow\"></i></a> <a class=\"tip\" title='" . lang("list_users") . "' href='" . admin_url('customers/users/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-users\"></i></a> <a class=\"tip\" title='" . lang("add_user") . "' href='" . admin_url('customers/add_user/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-user-plus\"></i></a> <a class=\"tip\" title='" . lang("edit_customer") . "' href='" . admin_url('customers/edit/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-edit\"></i></a> <a href='#' class='tip po' title='<b>" . lang("delete_customer") . "</b>' data-content=\"<p>" . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete' href='" . admin_url('customers/delete/$1') . "'>" . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i></a></div>", "id");
+            ->group_by('sma_refunds.company_id')
+            ->add_column("Actions", "<div class=\"text-center\"><a class=\"tip\" title='" . lang("list_deposits") . "' href='" . admin_url('customers/deposits/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-money\"></i></a> <a class=\"tip\" title='" . lang("add_deposit") . "' href='" . admin_url('customers/add_deposit/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-plus\"></i></a> <a class=\"tip\" title='" . lang("Refund") . "' href='" . admin_url('customers/remove_deposit/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-minus\"></i></a> <a title='" . lang("Ledger") . "' href='" . admin_url('customers/view_ledger/$1') . "'><i class=\"fa fa-file\"></i></a> <a class=\"tip\" title='" . lang("list_addresses") . "' href='" . admin_url('customers/addresses/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-location-arrow\"></i></a> <a class=\"tip\" title='" . lang("list_users") . "' href='" . admin_url('customers/users/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-users\"></i></a> <a class=\"tip\" title='" . lang("add_user") . "' href='" . admin_url('customers/add_user/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-user-plus\"></i></a> <a class=\"tip\" title='" . lang("edit_customer") . "' href='" . admin_url('customers/edit/$1') . "' data-toggle='modal' data-target='#myModal'><i class=\"fa fa-edit\"></i></a> <a href='#' class='tip po' title='<b>" . lang("delete_customer") . "</b>' data-content=\"<p>" . lang('r_u_sure') . "</p><a class='btn btn-danger po-delete' href='" . admin_url('customers/delete/$1') . "'>" . lang('i_m_sure') . "</a> <button class='btn po-close'>" . lang('no') . "</button>\"  rel='popover'><i class=\"fa fa-trash-o\"></i></a></div>", "id");
         //->unset_column('id');
         echo $this->datatables->generate();
+    }
+
+    public function view_ledger($companyId = NULL)
+    {
+        $this->db->select('companies.*,deposits.amount,deposits.date,deposits.paid_by');
+        $this->db->from('companies');
+        $this->db->join('deposits', 'companies.id = deposits.company_id');
+        // $this->db->join('refunds', 'companies.id = refunds.company_id');
+        $deposits = $this->db->get();
+        $deposits=$deposits->result();
+        // foreach ($deposits as $query) {
+        //     # code...
+        //     // print_r($query);
+        //     // echo "<br>";
+        // }
+        // exit();
+        $this->db->select('companies.*,refunds.amount,refunds.date,refunds.paid_by');
+        $this->db->from('companies');
+        $this->db->join('refunds', 'companies.id = refunds.company_id');
+        $refunds = $this->db->get();
+        $refunds=$refunds->result();
+        // foreach ($refunds->result() as $query) {
+        //     # code...
+        //     print_r($query->amount);
+        //     echo "<br>";
+        // }
+        // print_r($query);
+        // exit();
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        // $this->data['action'] = $action;
+        $this->data['refunds']=$refunds;
+        $this->data['deposits']=$deposits;
+        $bc = array(array('link' => base_url(), 'page' => lang('customers')), array('link' => '#', 'page' => lang('View Ledger')));
+        $meta = array('page_title' => lang('customers'), 'bc' => $bc);
+        // print_r($meta);
+        $this->page_construct('customers/view_ledger', $meta, $this->data);
+
     }
 
     function view($id = NULL)
@@ -489,6 +533,8 @@ class Customers extends MY_Controller
 
     function add_deposit($company_id = NULL)
     {
+        // print_r($company_id);
+        // exit();
         $this->sma->checkPermissions('deposits', true);
 
         if ($this->input->get('id')) {
@@ -534,6 +580,56 @@ class Customers extends MY_Controller
             $this->data['modal_js'] = $this->site->modal_js();
             $this->data['company'] = $company;
             $this->load->view($this->theme . 'customers/add_deposit', $this->data);
+        }
+    }
+
+    function remove_deposit($company_id = NULL)
+    {
+        $this->sma->checkPermissions('deposits', true);
+
+        if ($this->input->get('id')) {
+            $company_id = $this->input->get('id');
+        }
+        $company = $this->companies_model->getCompanyByID($company_id);
+
+        if ($this->Owner || $this->Admin) {
+            $this->form_validation->set_rules('date', lang("date"), 'required');
+        }
+        $this->form_validation->set_rules('amount', lang("amount"), 'required|numeric');
+
+        if ($this->form_validation->run() == true) {
+
+            if ($this->Owner || $this->Admin) {
+                $date = $this->sma->fld(trim($this->input->post('date')));
+            } else {
+                $date = date('Y-m-d H:i:s');
+            }
+            $data = array(
+                'date' => $date,
+                'amount' => $this->input->post('amount'),
+                'paid_by' => $this->input->post('paid_by'),
+                'note' => $this->input->post('note'),
+                'company_id' => $company->id,
+                'created_by' => $this->session->userdata('user_id'),
+            );
+
+            $cdata = array(
+                'deposit_amount' => ($company->deposit_amount-$this->input->post('amount'))
+            );
+
+        } elseif ($this->input->post('remove_deposit')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect('customers');
+        }
+
+        if ($this->form_validation->run() == true && $this->companies_model->removeDeposit($data, $cdata)) {
+            $this->session->set_flashdata('message', lang("Refund Made"));
+            admin_redirect("customers");
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $this->data['modal_js'] = $this->site->modal_js();
+            $this->data['company'] = $company;
+            $this->load->view($this->theme . 'customers/remove_deposit', $this->data);
         }
     }
 
