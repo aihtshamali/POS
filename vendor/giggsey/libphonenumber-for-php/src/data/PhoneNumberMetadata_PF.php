@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '4\\d{5,7}|8\\d{7}',
+    'NationalNumberPattern' => '[48]\\d{7}|4\\d{5}',
     'PossibleLength' => 
     array (
       0 => 6,
@@ -26,7 +26,7 @@ return array (
   ),
   'fixedLine' => 
   array (
-    'NationalNumberPattern' => '4(?:[09][45689]\\d|4)\\d{4}',
+    'NationalNumberPattern' => '4(?:[09][4-689]\\d|4)\\d{4}',
     'ExampleNumber' => '40412345',
     'PossibleLength' => 
     array (
@@ -130,7 +130,6 @@ return array (
   'noInternationalDialling' => 
   array (
     'NationalNumberPattern' => '44\\d{4}',
-    'ExampleNumber' => '441234',
     'PossibleLength' => 
     array (
       0 => 6,
@@ -147,11 +146,11 @@ return array (
   array (
     0 => 
     array (
-      'pattern' => '(\\d{2})(\\d{2})(\\d{2})(\\d{2})',
-      'format' => '$1 $2 $3 $4',
+      'pattern' => '(\\d{2})(\\d{2})(\\d{2})',
+      'format' => '$1 $2 $3',
       'leadingDigitsPatterns' => 
       array (
-        0 => '4[09]|8[79]',
+        0 => '44',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
@@ -159,11 +158,11 @@ return array (
     ),
     1 => 
     array (
-      'pattern' => '(\\d{2})(\\d{2})(\\d{2})',
-      'format' => '$1 $2 $3',
+      'pattern' => '(\\d{2})(\\d{2})(\\d{2})(\\d{2})',
+      'format' => '$1 $2 $3 $4',
       'leadingDigitsPatterns' => 
       array (
-        0 => '44',
+        0 => '[48]',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[49]\\d{2,4}',
+    'NationalNumberPattern' => '[49]\\d\\d(?:\\d{2})?',
     'PossibleLength' => 
     array (
       0 => 3,
@@ -26,9 +26,11 @@ return array (
   ),
   'tollFree' => 
   array (
+    'NationalNumberPattern' => '911',
+    'ExampleNumber' => '911',
     'PossibleLength' => 
     array (
-      0 => -1,
+      0 => 3,
     ),
     'PossibleLengthLocalOnly' => 
     array (
@@ -89,8 +91,8 @@ return array (
   ),
   'smsServices' => 
   array (
-    'NationalNumberPattern' => '40404',
-    'ExampleNumber' => '40404',
+    'NationalNumberPattern' => '404\\d\\d',
+    'ExampleNumber' => '40400',
     'PossibleLength' => 
     array (
       0 => 5,

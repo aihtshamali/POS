@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[2-8]\\d{6}|0\\d{10}',
+    'NationalNumberPattern' => '(?:0800\\d|[2-8])\\d{6}',
     'PossibleLength' => 
     array (
       0 => 7,
@@ -160,12 +160,11 @@ return array (
     ),
     1 => 
     array (
-      'pattern' => '(0)(800)(\\d{4})(\\d{3})',
+      'pattern' => '(\\d)(\\d{3})(\\d{4})(\\d{3})',
       'format' => '$1-$2-$3-$4',
       'leadingDigitsPatterns' => 
       array (
-        0 => '080',
-        1 => '0800',
+        0 => '0',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

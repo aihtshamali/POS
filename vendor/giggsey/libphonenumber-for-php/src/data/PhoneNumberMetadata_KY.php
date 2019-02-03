@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[3589]\\d{9}',
+    'NationalNumberPattern' => '(?:345|[58]\\d\\d|900)\\d{7}',
     'PossibleLength' => 
     array (
       0 => 10,
@@ -61,7 +61,7 @@ return array (
   ),
   'premiumRate' => 
   array (
-    'NationalNumberPattern' => '900[2-9]\\d{6}|345976\\d{4}',
+    'NationalNumberPattern' => '(?:345976|900[2-9]\\d\\d)\\d{4}',
     'ExampleNumber' => '9002345678',
     'PossibleLength' => 
     array (
@@ -82,7 +82,7 @@ return array (
   ),
   'personalNumber' => 
   array (
-    'NationalNumberPattern' => '5(?:(?:00|22|33|44|66|77|88)[2-9]|21[23])\\d{6}',
+    'NationalNumberPattern' => '5(?:00|2[12]|33|44|66|77|88)[2-9]\\d{6}',
     'ExampleNumber' => '5002345678',
     'PossibleLength' => 
     array (
@@ -157,5 +157,5 @@ return array (
   'mainCountryForCode' => false,
   'leadingDigits' => '345',
   'leadingZeroPossible' => false,
-  'mobileNumberPortableRegion' => false,
+  'mobileNumberPortableRegion' => true,
 );

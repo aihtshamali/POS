@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[2689]\\d{7}',
+    'NationalNumberPattern' => '(?:[268]\\d|90)\\d{6}',
     'PossibleLength' => 
     array (
       0 => 8,
@@ -146,11 +146,11 @@ return array (
   array (
     0 => 
     array (
-      'pattern' => '([2689]\\d)(\\d{3})(\\d{3})',
+      'pattern' => '(\\d{2})(\\d{3})(\\d{3})',
       'format' => '$1 $2 $3',
       'leadingDigitsPatterns' => 
       array (
-        0 => '[2689]',
+        0 => '[269]|8[01]',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

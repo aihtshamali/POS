@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[1-46-9]\\d{7,10}|5(?:[0-4]\\d{7,9}|5(?:[2-8]\\d{7}|9\\d{7,8}))',
+    'NationalNumberPattern' => '(?:[1-46-9]\\d\\d|5(?:[0-46-9]\\d|5[0-24679]))\\d{8}|[1-9]\\d{9}|[3589]\\d{8}|[34]\\d{7}',
     'PossibleLength' => 
     array (
       0 => 8,
@@ -41,7 +41,7 @@ return array (
   ),
   'mobile' => 
   array (
-    'NationalNumberPattern' => '(?:[189][1-9]|2[12478])(?:7|9\\d)\\d{7}|(?:3[1-578]|[46][1-9]|5[13-5]|7[13-579])(?:[6-8]|9\\d?)\\d{7}',
+    'NationalNumberPattern' => '(?:[189][1-9]|2[12478])(?:7|9\\d)\\d{7}|(?:3[1-578]|[46][1-9]|5[13-5]|7[13-579])(?:[6-9]|9\\d)\\d{7}',
     'ExampleNumber' => '11961234567',
     'PossibleLength' => 
     array (
@@ -81,7 +81,7 @@ return array (
   ),
   'sharedCost' => 
   array (
-    'NationalNumberPattern' => '(?:300\\d(?:\\d{2})?|40(?:0\\d|20))\\d{4}',
+    'NationalNumberPattern' => '(?:300\\d(?:\\d{2})?|4(?:0(?:0\\d|20)|370))\\d{4}',
     'ExampleNumber' => '40041234',
     'PossibleLength' => 
     array (
@@ -145,7 +145,6 @@ return array (
   'noInternationalDialling' => 
   array (
     'NationalNumberPattern' => '(?:300\\d|40(?:0\\d|20))\\d{4}',
-    'ExampleNumber' => '40041234',
     'PossibleLength' => 
     array (
       0 => 8,
@@ -169,8 +168,8 @@ return array (
       'format' => '$1-$2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '300|40[02]',
-        1 => '300|40(?:0|20)',
+        0 => '300|4(?:0[02]|37)',
+        1 => '300|4(?:0(?:0|20)|370)',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
@@ -178,7 +177,7 @@ return array (
     ),
     1 => 
     array (
-      'pattern' => '([3589]00)(\\d{2,3})(\\d{4})',
+      'pattern' => '(\\d{3})(\\d{2,3})(\\d{4})',
       'format' => '$1 $2 $3',
       'leadingDigitsPatterns' => 
       array (
@@ -257,8 +256,8 @@ return array (
       'format' => '$1-$2',
       'leadingDigitsPatterns' => 
       array (
-        0 => '300|40[02]',
-        1 => '300|40(?:0|20)',
+        0 => '300|4(?:0[02]|37)',
+        1 => '300|4(?:0(?:0|20)|370)',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',
@@ -266,7 +265,7 @@ return array (
     ),
     1 => 
     array (
-      'pattern' => '([3589]00)(\\d{2,3})(\\d{4})',
+      'pattern' => '(\\d{3})(\\d{2,3})(\\d{4})',
       'format' => '$1 $2 $3',
       'leadingDigitsPatterns' => 
       array (

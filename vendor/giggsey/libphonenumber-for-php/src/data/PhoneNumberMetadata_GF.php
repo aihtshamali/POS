@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[56]\\d{8}',
+    'NationalNumberPattern' => '[56]94\\d{6}',
     'PossibleLength' => 
     array (
       0 => 9,
@@ -149,6 +149,7 @@ return array (
       'format' => '$1 $2 $3 $4',
       'leadingDigitsPatterns' => 
       array (
+        0 => '[56]',
       ),
       'nationalPrefixFormattingRule' => '0$1',
       'domesticCarrierCodeFormattingRule' => '',
@@ -160,5 +161,5 @@ return array (
   ),
   'mainCountryForCode' => false,
   'leadingZeroPossible' => false,
-  'mobileNumberPortableRegion' => false,
+  'mobileNumberPortableRegion' => true,
 );

@@ -41,7 +41,7 @@ class Sales extends MY_Controller
             $this->data['warehouse_id'] = $this->session->userdata('warehouse_id');
             $this->data['warehouse'] = $this->session->userdata('warehouse_id') ? $this->site->getWarehouseByID($this->session->userdata('warehouse_id')) : null;
         }
-
+        // echo '<pre>';print_r($this->data);exit();
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('sales')));
         $meta = array('page_title' => lang('sales'), 'bc' => $bc);
         $this->page_construct('sales/index', $meta, $this->data);
@@ -149,6 +149,7 @@ class Sales extends MY_Controller
         $this->data['return_sale'] = $inv->return_id ? $this->sales_model->getInvoiceByID($inv->return_id) : NULL;
         $this->data['return_rows'] = $inv->return_id ? $this->sales_model->getAllInvoiceItems($inv->return_id) : NULL;
         $this->data['type']=$type;
+        // echo '<pre>';print_r($this->data);exit();
         $this->load->view($this->theme . 'sales/modal_view', $this->data);
     }
 
@@ -697,6 +698,7 @@ class Sales extends MY_Controller
             //$this->data['currencies'] = $this->sales_model->getAllCurrencies();
             $this->data['slnumber'] = ''; //$this->site->getReference('so');
             $this->data['payment_ref'] = ''; //$this->site->getReference('pay');
+            // echo '<pre>';print_r($this->data);exit();
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('sales'), 'page' => lang('sales')), array('link' => '#', 'page' => lang('add_sale')));
             $meta = array('page_title' => lang('add_sale'), 'bc' => $bc);
             $this->page_construct('sales/add', $meta, $this->data);

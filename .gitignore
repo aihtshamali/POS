@@ -1,2 +1,3 @@
 .htaccess
 /app/config/config.php
+/vendor

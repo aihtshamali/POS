@@ -14,14 +14,15 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '(?:0(?:878\\d{5}|6698\\d{5})|[1589]\\d{5,10}|3(?:[12457-9]\\d{8}|[36]\\d{7,9}))',
+    'NationalNumberPattern' => '0\\d{6}(?:\\d{4})?|3[0-8]\\d{9}|(?:[0138]\\d?|55)\\d{8}|[08]\\d{5}(?:\\d{2})?',
     'PossibleLength' => 
     array (
       0 => 6,
-      1 => 8,
-      2 => 9,
-      3 => 10,
-      4 => 11,
+      1 => 7,
+      2 => 8,
+      3 => 9,
+      4 => 10,
+      5 => 11,
     ),
     'PossibleLengthLocalOnly' => 
     array (
@@ -29,11 +30,10 @@ return array (
   ),
   'fixedLine' => 
   array (
-    'NationalNumberPattern' => '06698\\d{5}',
+    'NationalNumberPattern' => '06698\\d{1,6}',
     'ExampleNumber' => '0669812345',
     'PossibleLength' => 
     array (
-      0 => 10,
     ),
     'PossibleLengthLocalOnly' => 
     array (
@@ -41,7 +41,7 @@ return array (
   ),
   'mobile' => 
   array (
-    'NationalNumberPattern' => '3(?:[12457-9]\\d{8}|6\\d{7,8}|3\\d{7,9})',
+    'NationalNumberPattern' => '33\\d{9}|3[1-9]\\d{8}|3[2-9]\\d{7}',
     'ExampleNumber' => '3123456789',
     'PossibleLength' => 
     array (
@@ -55,7 +55,7 @@ return array (
   ),
   'tollFree' => 
   array (
-    'NationalNumberPattern' => '80(?:0\\d{6}|3\\d{3})',
+    'NationalNumberPattern' => '80(?:0\\d{3}|3)\\d{3}',
     'ExampleNumber' => '800123456',
     'PossibleLength' => 
     array (
@@ -68,7 +68,7 @@ return array (
   ),
   'premiumRate' => 
   array (
-    'NationalNumberPattern' => '0878\\d{5}|1(?:44|6[346])\\d{6}|89(?:2\\d{3}|4(?:[0-4]\\d{2}|[5-9]\\d{4})|5(?:[0-4]\\d{2}|[5-9]\\d{6})|9\\d{6})',
+    'NationalNumberPattern' => '(?:(?:0878|1(?:44|6[346])\\d)\\d\\d|89(?:2|(?:4[5-9]|(?:5[5-9]|9)\\d\\d)\\d))\\d{3}|89[45][0-4]\\d\\d',
     'ExampleNumber' => '899123456',
     'PossibleLength' => 
     array (
@@ -83,7 +83,7 @@ return array (
   ),
   'sharedCost' => 
   array (
-    'NationalNumberPattern' => '84(?:[08]\\d{6}|[17]\\d{3})',
+    'NationalNumberPattern' => '84(?:[08]\\d{3}|[17])\\d{3}',
     'ExampleNumber' => '848123456',
     'PossibleLength' => 
     array (
@@ -151,11 +151,9 @@ return array (
   ),
   'noInternationalDialling' => 
   array (
-    'NationalNumberPattern' => '848\\d{6}',
-    'ExampleNumber' => '848123456',
     'PossibleLength' => 
     array (
-      0 => 9,
+      0 => -1,
     ),
     'PossibleLengthLocalOnly' => 
     array (
@@ -172,6 +170,7 @@ return array (
   array (
   ),
   'mainCountryForCode' => false,
+  'leadingDigits' => '06698',
   'leadingZeroPossible' => false,
   'mobileNumberPortableRegion' => true,
 );

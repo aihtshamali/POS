@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[4-8]\\d{5}',
+    'NationalNumberPattern' => '(?:[45]0|68|72|8\\d)\\d{4}',
     'PossibleLength' => 
     array (
       0 => 6,
@@ -148,6 +148,7 @@ return array (
       'format' => '$1 $2 $3',
       'leadingDigitsPatterns' => 
       array (
+        0 => '[4-8]',
       ),
       'nationalPrefixFormattingRule' => '',
       'domesticCarrierCodeFormattingRule' => '',

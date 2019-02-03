@@ -11,9 +11,9 @@
  */
 
 return array (
-  59521 => 'Personal',
-  59596 => 'Personal',
+  59595 => 'VOX',
+  59596 => 'VOX',
   59597 => 'Personal',
-  59598 => 'Personal',
-  59599 => 'Personal',
+  59598 => 'Tigo',
+  59599 => 'Claro',
 );

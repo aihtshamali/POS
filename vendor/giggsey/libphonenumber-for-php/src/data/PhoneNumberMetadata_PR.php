@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '[5789]\\d{9}',
+    'NationalNumberPattern' => '(?:[589]\\d\\d|787)\\d{7}',
     'PossibleLength' => 
     array (
       0 => 10,
@@ -82,7 +82,7 @@ return array (
   ),
   'personalNumber' => 
   array (
-    'NationalNumberPattern' => '5(?:(?:00|22|33|44|66|77|88)[2-9]|21[23])\\d{6}',
+    'NationalNumberPattern' => '5(?:00|2[12]|33|44|66|77|88)[2-9]\\d{6}',
     'ExampleNumber' => '5002345678',
     'PossibleLength' => 
     array (
@@ -156,5 +156,5 @@ return array (
   'mainCountryForCode' => false,
   'leadingDigits' => '787|939',
   'leadingZeroPossible' => false,
-  'mobileNumberPortableRegion' => false,
+  'mobileNumberPortableRegion' => true,
 );

@@ -27,6 +27,5 @@ return array(
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
     'Facebook\\' => array($vendorDir . '/facebook/graph-sdk/src/Facebook'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
-    'Brick\\PhoneNumber\\Tests\\' => array($vendorDir . '/brick/phonenumber/tests'),
-    'Brick\\PhoneNumber\\' => array($vendorDir . '/brick/phonenumber/src'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

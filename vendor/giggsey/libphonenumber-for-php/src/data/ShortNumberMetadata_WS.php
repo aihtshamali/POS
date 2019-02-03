@@ -14,7 +14,7 @@
 return array (
   'generalDesc' => 
   array (
-    'NationalNumberPattern' => '9\\d{2}',
+    'NationalNumberPattern' => '[19]\\d\\d',
     'PossibleLength' => 
     array (
       0 => 3,
@@ -25,9 +25,10 @@ return array (
   ),
   'tollFree' => 
   array (
+    'NationalNumberPattern' => '9(?:11|9[4-69])',
+    'ExampleNumber' => '911',
     'PossibleLength' => 
     array (
-      0 => -1,
     ),
     'PossibleLengthLocalOnly' => 
     array (
@@ -45,8 +46,8 @@ return array (
   ),
   'emergency' => 
   array (
-    'NationalNumberPattern' => '99[4-6]',
-    'ExampleNumber' => '994',
+    'NationalNumberPattern' => '9(?:11|9[4-69])',
+    'ExampleNumber' => '911',
     'PossibleLength' => 
     array (
     ),
@@ -56,8 +57,8 @@ return array (
   ),
   'shortCode' => 
   array (
-    'NationalNumberPattern' => '99[4-6]',
-    'ExampleNumber' => '994',
+    'NationalNumberPattern' => '1(?:1[12]|2[0-6])|9(?:11|9[4-79])',
+    'ExampleNumber' => '111',
     'PossibleLength' => 
     array (
     ),
@@ -77,9 +78,10 @@ return array (
   ),
   'carrierSpecific' => 
   array (
+    'NationalNumberPattern' => '12[0-6]',
+    'ExampleNumber' => '120',
     'PossibleLength' => 
     array (
-      0 => -1,
     ),
     'PossibleLengthLocalOnly' => 
     array (

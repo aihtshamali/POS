@@ -398,7 +398,7 @@
                                             ?>
                                             <th>
                                                 <?= lang("subtotal"); ?>
-                                                (<span class="currency"><?= $default_currency->code ?></span>)
+                                                (<span class="currency"><?= $Settings->default_currency ?></span>)
                                             </th>
                                             <th style="width: 30px !important; text-align: center;">
                                                 <i class="fa fa-trash-o" style="opacity:0.5; filter:alpha(opacity=50);"></i>
@@ -883,7 +883,7 @@
                     // console.log(page);
                     // console.log(term);
                     if (data.results != null) {
-                        console.log(results);
+                        // console.log(results);
                         
                         return {results: data.results};
 

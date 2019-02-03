@@ -241,7 +241,7 @@
                         <tr>
                             <td colspan="<?= $tcol; ?>"
                                 style="text-align:right; padding-right:10px;"><?= lang("total"); ?>
-                                (<?= $default_currency->code; ?>)
+                                (<?= $Settings->default_currency; ?>)
                             </td>
                             <?php
                             if ($Settings->tax1 && $inv->product_tax > 0) {

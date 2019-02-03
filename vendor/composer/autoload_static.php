@@ -7,11 +7,12 @@ namespace Composer\Autoload;
 class ComposerStaticInite82946244f5b14ab6a27d7f900b19118
 {
     public static $files = array (
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -65,11 +66,7 @@ class ComposerStaticInite82946244f5b14ab6a27d7f900b19118
         'D' => 
         array (
             'Dompdf\\' => 7,
-        ),
-        'B' => 
-        array (
-            'Brick\\PhoneNumber\\Tests\\' => 24,
-            'Brick\\PhoneNumber\\' => 18,
+            'DeepCopy\\' => 9,
         ),
     );
 
@@ -158,13 +155,9 @@ class ComposerStaticInite82946244f5b14ab6a27d7f900b19118
         array (
             0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
-        'Brick\\PhoneNumber\\Tests\\' => 
+        'DeepCopy\\' => 
         array (
-            0 => __DIR__ . '/..' . '/brick/phonenumber/tests',
-        ),
-        'Brick\\PhoneNumber\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/brick/phonenumber/src',
+            0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
     );
 
