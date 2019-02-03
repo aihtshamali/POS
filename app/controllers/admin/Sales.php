@@ -56,6 +56,7 @@ class Sales extends MY_Controller
             $warehouse_id = $user->warehouse_id;
         }
         $detail_link = anchor('admin/sales/view/$1', '<i class="fa fa-file-text-o"></i> ' . lang('sale_details'));
+        $gate_pass ='<a href="#" class="gatePass_link" id="$1"> <i class="fa fa-file-text-o"></i> Gate Pass </a>';
         $duplicate_link = anchor('admin/sales/add?sale_id=$1', '<i class="fa fa-plus-circle"></i> ' . lang('duplicate_sale'));
         $payments_link = anchor('admin/sales/payments/$1', '<i class="fa fa-money"></i> ' . lang('view_payments'), 'data-toggle="modal" data-target="#myModal"');
         $add_payment_link = anchor('admin/sales/add_payment/$1', '<i class="fa fa-money"></i> ' . lang('add_payment'), 'data-toggle="modal" data-target="#myModal"');
@@ -73,6 +74,7 @@ class Sales extends MY_Controller
         . '<button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">'
         . lang('actions') . ' <span class="caret"></span></button>
         <ul class="dropdown-menu pull-right" role="menu">
+            <li>' .$gate_pass. '</li>
             <li>' . $detail_link . '</li>
             <li>' . $duplicate_link . '</li>
             <li>' . $payments_link . '</li>
@@ -118,16 +120,19 @@ class Sales extends MY_Controller
         } elseif ($this->Customer) {
             $this->datatables->where('customer_id', $this->session->userdata('user_id'));
         }
+        // $this->datatable->add_column('GatePass','<div class="text-center"><div class="btn-group text-left"><button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle"></button></div>','id');
         $this->datatables->add_column("Actions", $action, "id");
         echo $this->datatables->generate();
     }
 
-    public function modal_view($id = null)
+    public function modal_view($id = null,$type=null)
     {
         $this->sma->checkPermissions('index', true);
-
         if ($this->input->get('id')) {
             $id = $this->input->get('id');
+        }
+        if ($this->input->get('type')) {
+            $type = $this->input->get('type');
         }
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $inv = $this->sales_model->getInvoiceByID($id);
@@ -143,7 +148,7 @@ class Sales extends MY_Controller
         $this->data['rows'] = $this->sales_model->getAllInvoiceItems($id);
         $this->data['return_sale'] = $inv->return_id ? $this->sales_model->getInvoiceByID($inv->return_id) : NULL;
         $this->data['return_rows'] = $inv->return_id ? $this->sales_model->getAllInvoiceItems($inv->return_id) : NULL;
-
+        $this->data['type']=$type;
         $this->load->view($this->theme . 'sales/modal_view', $this->data);
     }
 
@@ -1407,13 +1412,13 @@ class Sales extends MY_Controller
         $action = '<div class="text-center"><div class="btn-group text-left">'
         . '<button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">'
         . lang('actions') . ' <span class="caret"></span></button>
-    <ul class="dropdown-menu pull-right" role="menu">
+        <ul class="dropdown-menu pull-right" role="menu">
         <li>' . $detail_link . '</li>
         <li>' . $edit_link . '</li>
         <li>' . $pdf_link . '</li>
         <li>' . $delete_link . '</li>
-    </ul>
-</div></div>';
+        </ul>
+       </div></div>';
 
         $this->load->library('datatables');
         //GROUP_CONCAT(CONCAT('Name: ', sale_items.product_name, ' Qty: ', sale_items.quantity ) SEPARATOR '<br>')

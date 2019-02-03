@@ -14,6 +14,9 @@
                          alt="<?= $biller->company != '-' ? $biller->company : $biller->name; ?>">
                 </div>
             <?php } ?>
+            <h1 class="text-center" style="margin-right:9%">
+                <?=($type);?>
+            </h1>
             <div class="well well-sm">
                 <div class="row bold">
                     <div class="col-xs-5">
@@ -173,7 +176,7 @@
                             if ($Settings->tax1 && $inv->product_tax > 0) {
                                 echo '<td style="width: 100px; text-align:right; vertical-align:middle;">' . ($row->item_tax != 0 ? '<small>('.($Settings->indian_gst ? $row->tax : $row->tax_code).')</small>' : '') . ' ' . $this->sma->formatMoney($row->item_tax) . '</td>';
                             }
-                            if ($Settings->product_discount && $inv->product_discount != 0) {
+                            if ($Settings->product_discount && $inv->product_discount != 0 ) {
                                 echo '<td style="width: 100px; text-align:right; vertical-align:middle;">' . ($row->discount != 0 ? '<small>(' . $row->discount . ')</small> ' : '') . $this->sma->formatMoney($row->item_discount) . '</td>';
                             }
                             ?>
@@ -286,6 +289,7 @@
                     <?php if ($inv->shipping != 0) {
                         echo '<tr><td colspan="' . $col . '" style="text-align:right; padding-right:10px;;">' . lang("shipping") . ' (' . $default_currency->code . ')</td><td style="text-align:right; padding-right:10px;">' . $this->sma->formatMoney($inv->shipping) . '</td></tr>';
                     }
+                    if(!$type){
                     ?>
                     <tr>
                         <td colspan="<?= $col; ?>"
@@ -308,6 +312,7 @@
                         </td>
                         <td style="text-align:right; font-weight:bold;"><?= $this->sma->formatMoney(($return_sale ? ($inv->grand_total+$return_sale->grand_total) : $inv->grand_total) - ($return_sale ? ($inv->paid+$return_sale->paid) : $inv->paid)); ?></td>
                     </tr>
+                    <?php } ?>
 
                     </tfoot>
                 </table>
@@ -359,7 +364,7 @@
                     </div>
                 </div>
             </div>
-            <?php if (!$Supplier || !$Customer) { ?>
+            <?php if ((!$Supplier || !$Customer) && $type) { ?>
                 <div class="buttons">
                     <div class="btn-group btn-group-justified">
                         <div class="btn-group">

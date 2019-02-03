@@ -325,6 +325,7 @@ class Products extends MY_Controller
         $this->load->helper('security');
         $warehouses = $this->site->getAllWarehouses();
         $this->form_validation->set_rules('category', lang("category"), 'required|is_natural_no_zero');
+        $this->form_validation->set_rules('brand', lang("brand"), 'required');
         if ($this->input->post('type') == 'standard') {
             $this->form_validation->set_rules('cost', lang("product_cost"), 'required');
             $this->form_validation->set_rules('unit', lang("product_unit"), 'required');
@@ -403,6 +404,7 @@ class Products extends MY_Controller
                 }
                 foreach ($warehouses as $warehouse) {
                     if ($this->input->post('wh_qty_' . $warehouse->id)) {
+                        $this->form_validation->set_rules('wh_qty_'.$warehouse->id.'', lang('wh_qty_'.$warehouse->id.''), 'required');
                         $warehouse_qty[] = array(
                             'warehouse_id' => $this->input->post('wh_' . $warehouse->id),
                             'quantity' => $this->input->post('wh_qty_' . $warehouse->id),
@@ -411,7 +413,6 @@ class Products extends MY_Controller
                         $wh_total_quantity += $this->input->post('wh_qty_' . $warehouse->id);
                     }
                 }
-
                 if ($this->input->post('attributes')) {
                     $a = sizeof($_POST['attr_name']);
                     for ($r = 0; $r <= $a; $r++) {

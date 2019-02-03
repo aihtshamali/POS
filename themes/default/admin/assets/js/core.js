@@ -1078,6 +1078,15 @@ $(document).ready(function() {
     $('body').on('click', '.invoice_link td:not(:first-child, :nth-child(6), :nth-last-child(2), :last-child)', function() {
         $('#myModal').modal({remote: site.base_url + 'sales/modal_view/' + $(this).parent('.invoice_link').attr('id')});
         $('#myModal').modal('show');
+        $(this).attr('id')
+        //window.location.href = site.base_url + 'sales/view/' + $(this).parent('.invoice_link').attr('id');
+    });
+    $('body').on('click', 'a.gatePass_link', function() {
+        $('#myModal').modal({remote: site.base_url + 'sales/modal_view?id=' + $(this).attr('id')+'&type="Gatepass"'});
+        console.log( $(this).attr('id'));
+        
+        $('#myModal').modal('show');
+        return false;
         //window.location.href = site.base_url + 'sales/view/' + $(this).parent('.invoice_link').attr('id');
     });
     $('body').on('click', '.invoice_link2 td:not(:first-child, :last-child)', function() {

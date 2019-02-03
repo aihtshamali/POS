@@ -329,6 +329,8 @@ class Customers extends MY_Controller
 
     function suggestions($term = NULL, $limit = NULL, $a = NULL)
     {
+        // $this->sma->send_json($term);
+        
         // $this->sma->checkPermissions('index');
         if ($this->input->get('term')) {
             $term = $this->input->get('term', TRUE);

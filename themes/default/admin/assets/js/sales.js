@@ -35,6 +35,10 @@ $(document).ready(function (e) {
                 },
                 results: function (data, page) {
                     if (data.results != null) {
+                        // console.log(data);
+                        data.results.forEach(function (val){
+                            val.text=val.text+" - ("+Math.round(val.deposit_amount)+")";
+                        })
                         return {results: data.results};
                     } else {
                         return {results: [{id: '', text: 'No Match Found'}]};

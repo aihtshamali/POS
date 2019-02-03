@@ -161,7 +161,7 @@ class Companies_model extends CI_Model
 
     public function getCustomerSuggestions($term, $limit = 10)
     {
-        $this->db->select("id, (CASE WHEN company = '-' THEN name ELSE CONCAT(company, ' (', name, ')') END) as text, (CASE WHEN company = '-' THEN name ELSE CONCAT(company, ' (', name, ')') END) as value, phone", FALSE);
+        $this->db->select("id, (CASE WHEN company = '-' THEN name ELSE CONCAT(company, ' (', name, ')') END) as text,deposit_amount, (CASE WHEN company = '-' THEN name ELSE CONCAT(company, ' (', name, ')') END) as value, phone", FALSE);
         $this->db->where(" (id LIKE '%" . $term . "%' OR name LIKE '%" . $term . "%' OR company LIKE '%" . $term . "%' OR email LIKE '%" . $term . "%' OR phone LIKE '%" . $term . "%') ");
         $q = $this->db->get_where('companies', array('group_name' => 'customer'), $limit);
         if ($q->num_rows() > 0) {

@@ -155,6 +155,8 @@
                         customer_id: $("#slcustomer").val()
                     },
                     success: function (data) {
+                        console.log(data);
+                        
                         $(this).removeClass('ui-autocomplete-loading');
                         response(data);
                     }
@@ -878,8 +880,13 @@
                     };
                 },
                 results: function (data, page) {
+                    // console.log(page);
+                    // console.log(term);
                     if (data.results != null) {
+                        console.log(results);
+                        
                         return {results: data.results};
+
                     } else {
                         return {results: [{id: '', text: 'No Match Found'}]};
                     }
