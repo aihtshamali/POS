@@ -132,7 +132,6 @@ class Sales_model extends CI_Model
 
     public function getAllInvoiceItems($sale_id, $return_id = NULL)
     {
-        print_r($sale_id);
         $this->db->select('sale_items.*, tax_rates.code as tax_code, tax_rates.name as tax_name, tax_rates.rate as tax_rate, products.image, products.details as details, product_variants.name as variant, products.hsn_code as hsn_code, products.second_name as second_name')
             ->join('products', 'products.id=sale_items.product_id', 'left')
             ->join('product_variants', 'product_variants.id=sale_items.option_id', 'left')
